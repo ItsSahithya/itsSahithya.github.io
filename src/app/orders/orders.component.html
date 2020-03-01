@@ -1,0 +1,19 @@
+<div>
+    <h1>Orders for</h1>
+   
+    <div *ngIf="orders && orders.length > 0">
+        <table class="table table-hover orders-table" 
+            *ngFor="let order of orders">
+            <tr>
+                <td>{{orderItem.productName}}</td>
+                <td>orderItem.itemCost</td>    
+            </tr>
+        </table>
+    </div>   
+</div>
+<div>
+   No customer found
+</div>  
+<br />
+<a>View All Customers</a>
+

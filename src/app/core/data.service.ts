@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { ICustomer } from '../shared/interface';
+import { ICustomer, IOrder } from '../shared/interface';
 
 @Injectable()
 export class DataService {
@@ -14,6 +14,7 @@ export class DataService {
 
     // Use the following properties if running the app stand-alone with no external dependencies
     customersUrl = 'assets/customers.json';  
+    ordersUrl = 'assets/orders.json';
 
     constructor(private http: HttpClient) { }
 
@@ -23,6 +24,14 @@ export class DataService {
           catchError(this.handleError)
         );
 
+    }
+
+
+    getOrders(): Observable<IOrder[]> {
+      return this.http.get<IOrder[]>(this.ordersUrl)
+      .pipe(
+        catchError(this.handleError)
+      );
     }
 
   

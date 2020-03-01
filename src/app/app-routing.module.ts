@@ -7,7 +7,7 @@ const routes: Routes =  [
 
   //  {path: '' , pathMatch: 'full', component:'customersComponetn'},
 
-    { path: '**', pathMatch: 'full', redirectTo: '/customers' }
+    { path: '**', pathMatch: 'full', redirectTo: '/orders' }
 ]
 
 @NgModule({
