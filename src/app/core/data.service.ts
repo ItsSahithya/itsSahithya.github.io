@@ -26,17 +26,32 @@ export class DataService {
 
     }
 
-
-    getOrders(): Observable<IOrder[]> {
-      return this.http.get<IOrder[]>(this.ordersUrl)
-      .pipe(
-        catchError(this.handleError)
-      );
+    getCustomer(id: number): Observable<ICustomer> {
+      return this.http.get<ICustomer[]>(this.customersUrl)
+        .pipe(
+          map(customers => {
+            const customer = customers.filter((cust: ICustomer) => cust.id === id);
+            return (customer && customer.length) ? customer[0] : null;
+          }),
+          catchError(this.handleError)
+        );
     }
 
-  
-
     
+
+  
+    getOrdersByCustomerId(customerId: number): Observable<IOrder[]> {
+      return this.http.get<IOrder[]>(this.ordersUrl)
+      .pipe(
+        map(orders => {
+          const custOrders = orders.filter((order: IOrder) => order.customerId === customerId);
+          return custOrders;
+        }),
+        catchError(this.handleError)
+      );
+      
+    }
+
 
     private handleError(error: any) {
       console.error('server error:', error);

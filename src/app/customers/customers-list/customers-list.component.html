@@ -11,9 +11,10 @@
     </thead>
     <tr *ngFor="let cust of filteredCustomers">
         <td>
-            <a [routerLink]="['/orders']">     
-                {{ cust.name | capitalize }}
+            <a [routerLink]="['/orders', cust.id]">     
+                {{ cust.name | capitalize }} {{cust.id}}
             </a>
+           
         </td>
         <td>{{ cust.city }}</td>
         <td>{{ cust.orderTotal | currency:currencyCode:'symbol' }}
